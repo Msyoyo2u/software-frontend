@@ -1,6 +1,6 @@
 $(document).ready(function(){
  $('#searchUser').on('keyup', function(e){
-     var username = e.target.value;
+  let username = e.target.value;
 
      //Make request to Github
      $.ajax({
@@ -10,14 +10,20 @@ $(document).ready(function(){
                 client_secret:'999917df3deb546459f37f63adc785974d1c5e6c'
         }
     }).done(function(user){
-        $.ajax({
-            url: "https://api.github.com/users/" + username +"/repos",
-            data: {
-            client_id: '0eb3f693ac8073929d0b',
-            client_secret:'999917df3deb546459f37f63adc785974d1c5e6c',
-            sort: 'created: asc',
-                per_page: 5
-            }
+        $('#profile').html;
+            <div class="panel panel-default">
+            <div class="panel-heading">
+            <h3 class="panel-title">${user.name}</h3>
+            </div>
+            <div class="panel-body">
+            <div class="row">
+            <div class='col-md-3'>
+            <img class="thumbnail avatar" src="${user.avatar_url}">
+            <a target="_blank" class="btn btn-primary btn-block" href="${user.html_url}">View Profile</a>
+            </div>
+            <div class="col-md-9">
+            <span class="label label-default">Public Repo: ${user.public_repos}</span>
+            <span class
     }).done(function(repos){
         $.each(repos, function(index, repo){
             $('#repos').append(`
@@ -28,8 +34,9 @@ $(document).ready(function(){
                     </div>
                     <div class="col-md-3">
                     <span class="label label-default">Forks: ${repo.forks_count}</span>
-                    <span class="label label-primary">Watchers: ${repo.watchers_count}</span>
-                    <span class="label label-success">Followers: ${repo.stargazers_count}</span>
+					<span class="label label-primary">Watchers: ${repo.watchers_count}</span>
+					<span class="label label-success">Followers: ${repo.stargazers_count}</span>
+                    <span class="label label"
                     </div>
                     <div class="col-md-2">
                     <a target="_blank" class="btn btn-default" href="${repo.html_url}">Repo Page</a>
@@ -54,8 +61,8 @@ $(document).ready(function(){
                     </div>
                     <div class="col-md-9">
                     <span class="label label-default">Public Repos: ${user.public_repos}</span>
-                                <span class="label label-primary">Public Gists: ${user.public_gists}</span>
-                                <span class="label label-success">Followers: ${user.followers}</span>
+								<span class="label label-primary">Public Gists: ${user.public_gists}</span>
+								<span class="label label-success">Followers: ${user.followers}</span>
                                 <span class="label label-info">Following: ${user.following}</span>
                                 <br><br>
                                 <ul class="list-group">
@@ -72,7 +79,7 @@ $(document).ready(function(){
                 <div id="repos"></div>
         `);
 
-
+    
      });
  });
 });
